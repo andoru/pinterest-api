@@ -1,0 +1,96 @@
+$item_dim: 200px;
+
+body { margin: 0; }
+
+ul {
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  @media (min-width: ($item_dim * 5) + 1) {
+    width: $item_dim * 5;
+  }
+
+  li {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: inline-block;
+    overflow: hidden;
+    float: left;
+
+    @media (max-width: $item_dim * 2) {
+      width: 50%;
+      padding-bottom: 50%;
+    }
+
+    @media (min-width: ($item_dim * 2) + 1) and (max-width: $item_dim * 3) {
+      width: 33.33333333%;
+      padding-bottom: 33.33333333%;
+    }
+
+    @media (min-width: ($item_dim * 3) + 1) and (max-width: $item_dim * 4) {
+      width: 25%;
+      padding-bottom: 25%;
+    }
+
+    @media (min-width: ($item_dim * 4) + 1) and (max-width: $item_dim * 5) {
+      width: 20%;
+      padding-bottom: 20%;
+    }
+
+    @media (min-width: ($item_dim * 5) + 1) {
+      width: $item_dim;
+      height: $item_dim;
+    }
+
+    div {
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 0; right: 0;
+      background-size: cover;
+      background-position: 50%;
+      background-repeat: no-repeat;
+      box-sizing: border-box;
+      transition: filter 2.6s;
+      z-index: 1;
+    }
+
+    &:hover div {
+      filter: grayscale(80%) blur(3px);
+      transition: opacity 1s;
+    }
+
+    a {
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 0; right: 0;
+      background-color: #FF2E7F; // Fallback
+      opacity: 0;
+      z-index: 2;
+      pointer-events: none;
+      transition: opacity 2.6s;
+
+      img {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        width: 48px;
+        height: 48px;
+      }
+    }
+
+    &:hover a {
+      opacity: 0.7;
+      pointer-events: auto;
+      cursor: pointer;
+      transition: opacity 1s;
+    }
+  }
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
